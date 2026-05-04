@@ -1,6 +1,13 @@
-function Cat(breed, age, gender, color, name, photo, isSleeping) {
+function Cat(breed, age, gender, color, name, photo, isSleeping = false) {
   this.breed = breed;
-  this.age = age;
+
+  if (age >= 0 && age <= 35) {
+    this.age = age;
+  } else {
+    console.log("Некорректный возраст, поставлено 0");
+    this.age = 0;
+  }
+
   this.gender = gender;
   this.color = color;
   this.name = name;
@@ -15,15 +22,15 @@ function Cat(breed, age, gender, color, name, photo, isSleeping) {
     }
   };
 
-  // this.goSleep = function () {
-  //   this.isSleeping = false;
-  //   console.log(this.name + " теперь спит 😴");
-  // };
+  this.goSleep = function () {
+    this.isSleeping = true;
+    console.log(this.name + " теперь спит 😴");
+  };
 
-  // this.wakeUp = function () {
-  //   this.isSleeping = true;
-  //   console.log(this.name + " проснулся 😺");
-  // };
+  this.wakeUp = function () {
+    this.isSleeping = false;
+    console.log(this.name + " проснулся 😺");
+  };
 
   this.checkSleeping = function () {
     if (this.isSleeping) {
@@ -40,8 +47,7 @@ let cat1 = new Cat(
   "мальчик",
   "белый",
   "Барсик",
-  "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
-  false
+  "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"
 );
 
 let cat2 = new Cat(
@@ -50,8 +56,7 @@ let cat2 = new Cat(
   "девочка",
   "серый",
   "Мурка",
-  "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg",
-  false
+  "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg"
 );
 
 let cat3 = new Cat(
@@ -60,8 +65,7 @@ let cat3 = new Cat(
   "мальчик",
   "рыжий",
   "Рыжик",
-  "https://cdn2.thecatapi.com/images/4RzEwvyzz.jpg",
-  false
+  "https://cdn2.thecatapi.com/images/4RzEwvyzz.jpg"
 );
 
 let cat4 = new Cat(
@@ -76,12 +80,6 @@ let cat4 = new Cat(
 
 let cats = [cat1, cat2, cat3, cat4];
 
-console.log(cats);
+cats.forEach(cat => cat.askFood());
 
-for (let i = 0; i < cats.length; i++) {
-  cats[i].askFood();
-}
-
-for (let i = 0; i < cats.length; i++) {
-  cats[i].checkSleeping();
-}
+cats.forEach(cat => cat.checkSleeping());
